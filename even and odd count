@@ -1,0 +1,28 @@
+#include<stdio.h>
+int main()
+{
+	int a[50],n,i,ec,od;
+	ec=0;
+	od=0;
+	printf("enter the n value:");
+	scanf("%d",&n);
+	for(i=0;i<n;i++)
+	scanf("%d",&a[i]);
+	for(i=0;i<n;i++)
+	{
+		if(a[i]%2==0)
+		{
+			ec++;
+			
+		}
+	    else
+	    {
+	    	od++;
+	    	
+		}
+	
+	}
+	printf("even count=%d\neven count=%d\n",ec,od);
+	return 0;
+	
+}

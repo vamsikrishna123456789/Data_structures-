@@ -1,0 +1,145 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<malloc.h>
+struct node
+{
+	int data;
+	struct node*next;
+}*head=NULL,*p,*t,*newnode;
+
+void create()
+{
+	int i,n,ele;
+	printf("enter the list  count");
+	scanf("%d",&n);
+	for(i=0;i<n;i++)
+	{
+		printf("enter the element");
+		scanf("%d",&ele);
+		newnode=(struct node*)malloc(sizeof(struct node));
+		newnode->data=ele;
+		newnode->next=NULL;
+		if(head==NULL)
+	
+		{
+			head=newnode;
+			p=newnode;
+		}
+		else
+		{
+			for(p=head;p->next!=NULL;p=p->next);
+			p->next=newnode;
+			p=newnode;
+		}
+	}
+}
+void insert_at_begin()
+{
+	int ele;
+	printf("enter the element");
+	scanf("%d",&ele);
+	newnode=(struct node*)malloc(sizeof(struct node));
+	newnode->data=ele;
+	p=head;
+	newnode->next=p;
+	head=newnode;
+	p=newnode;
+}
+void insert_at_end()
+{
+	int ele;
+	printf("enter the element");
+	scanf("%d",&ele);
+	newnode=(struct node*)malloc(sizeof(struct node));
+	newnode->data=ele;
+	p->next=NULL;
+	for(p=head;p->next!=NULL;p=p->next);
+	p->next=newnode;
+	p=newnode;
+	
+}
+void insert_at_any_position()
+{
+	int ele,pos,i;
+	printf("enter the element");
+	scanf("%d",&ele);
+	printf("enter the position");
+	scanf("%d",&pos);
+	newnode=(struct node*)malloc(sizeof(struct node));
+	newnode->data=ele;
+	
+	for(p=head,i=1; i<pos; p=p->next,i++)
+	t=p;
+	t->next=newnode;
+	newnode->next=p;
+	p=newnode;
+}
+void delete_at_begin()
+{
+	int ele;
+	p=head;
+	head=p->next;
+	free(p);
+	p=head;
+	printf("DELETED ELEMENT=%d",ele);
+}
+void delete_at_end()
+{
+	int ele;
+	for(p=head;p->next!=NULL;p=p->next)
+	t=p;
+	t->next=NULL;
+	free(p);
+	p=head;
+	printf("DELETED ELEMENT=%d",ele);
+}
+void delete_at_any_position()
+{
+	int ele,i,pos;
+	printf("enter the position");
+	scanf("%d",&pos);
+	for(p=head,i=1;i<pos;p=p->next,i++)
+	t=p;
+	t->next=p->next;
+	free(p);
+	p=head;
+	printf("DELETED ELEMENT=%d",ele);
+}
+void display()
+{
+	if(head==NULL)
+	{
+		printf("linked list is empty");
+	}
+	else
+	{
+		for(p=head;p!=NULL;p=p->next)
+			printf(" %d->",p->data);
+	}
+}
+
+int main()
+{
+	int cho;
+	do
+	{
+		printf("\n main menu \n");
+		printf(" 1.create\n 2.insert at begin\n  3.insert_at_end\n 4.insert at any position\n 5.delete at begin\n 6.delete at end\n 7.delete at any position\n 8.display\n 9.exit\n");
+		printf("enter your choice:");
+		scanf("%d",&cho);
+		switch(cho)
+		{
+			case 1:create();break;
+		    case 2:insert_at_begin();break;
+		    case 3:insert_at_end();break;
+			case 4:insert_at_any_position();break;
+			case 5:delete_at_begin();break;
+			case 6:delete_at_end();break;
+			case 7:delete_at_any_position();break;
+			case 8:display();break;
+			case 9:exit(0);
+			default:printf("entered wrong choice.....");
+		}
+	}
+	while(cho>0 && cho<=9);
+}
